@@ -31,7 +31,7 @@
     </div>
     <button-component
       class="turn"
-      v-if="selectedShip && ships.ships[selectedShip].type > 1"
+      v-if="selectedShip && selectedShip > 3"
       @click="isRotate = !isRotate"
       value="turn"
     />
