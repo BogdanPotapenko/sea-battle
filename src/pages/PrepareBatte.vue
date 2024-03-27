@@ -29,6 +29,12 @@
         value="Start"
       />
     </div>
+    <button-component
+      class="turn"
+      v-if="selectedShip && ships.ships[selectedShip].type > 1"
+      @click="isRotate = !isRotate"
+      value="turn"
+    />
   </div>
 </template>
 
@@ -130,7 +136,6 @@ window.onwheel = () => {
   display: flex;
   flex-direction: column;
   margin: 30px auto;
-
   gap: 30px;
 }
 .menu {
@@ -155,5 +160,8 @@ window.onwheel = () => {
 }
 .selected {
   border: solid 3px #001fff;
+}
+.turn {
+  margin: 0 auto;
 }
 </style>
