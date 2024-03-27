@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: RouteRecordRaw[] = [
   {
-    path: "/sea-battle/prepare",
+    path: "/sea-battle/",
     name: "prepare",
     component: () => import("../pages/PrepareBatte.vue"),
   },
@@ -11,7 +11,7 @@ const routes: RouteRecordRaw[] = [
     name: "battle",
     component: () => import("../pages/SeaBattle.vue"),
   },
-  { path: "/sea-battle/:catchAll(.*)*", redirect: "/sea-battle/prepare" },
+  { path: "/:catchAll(.*)*", redirect: "/sea-battle/" },
 ];
 
 const router = createRouter({
@@ -21,7 +21,7 @@ const router = createRouter({
 
 router.beforeEach(function (to, from, next) {
   if (from.name !== "prepare" && to.name === "battle") {
-    return next("/");
+    return next("/sea-battle/");
   }
 
   return next();

@@ -115,7 +115,7 @@ const autoPlace = () => {
 
 const startGame = () => {
   playerBoard.set(board.value.cells);
-  router.replace({ name: "battle" });
+  router.push({ name: "battle" });
 };
 
 window.onwheel = () => {

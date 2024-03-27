@@ -3,7 +3,7 @@
     <winner-component :winner="theWinner" />
   </div>
   <div v-else class="container">
-    <button-component @click="router.push('/prepare')" value="Start over" />
+    <button-component @click="router.push('/')" value="Start over" />
     <div class="boards">
       <div class="board">
         <p>Player</p>

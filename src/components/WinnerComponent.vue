@@ -2,7 +2,7 @@
   <div class="winner">
     <div v-if="winner === 'player'">Congratulations, you won!</div>
     <div v-else>Unfortunately, you lost!</div>
-    <button-component @click="router.push('/prepare')" value="New game" />
+    <button-component @click="router.push('/')" value="New game" />
   </div>
 </template>
 
