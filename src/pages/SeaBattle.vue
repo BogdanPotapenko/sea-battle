@@ -11,7 +11,7 @@
       </div>
       <div class="board">
         <p>Enemy</p>
-        <board-component @attack="attack" enemy :board="enemy" />
+        <board-component @attack="playerAttack" enemy :board="enemy" />
       </div>
     </div>
   </div>
@@ -36,7 +36,8 @@ const firstSuccessAttack = ref<Cell | null>(null);
 const lastSuccessAttack = ref<Cell | null>(null);
 const theWinner = ref<"player" | "enemy" | null>(null);
 
-const attack = (cell: Cell) => {
+//the player selects a cell to attack
+const playerAttack = (cell: Cell) => {
   if (turn.value === "enemy") return;
   if (cell.isMissed || cell.isHitted) return;
   enemy.value.attackShip(cell);
@@ -46,10 +47,11 @@ const attack = (cell: Cell) => {
   turn.value = "enemy";
 };
 
+//the enemy selects a cell to attack
 const enemyAttack = () => {
   let attack = player.value.cells[Math.floor(Math.random() * 99)];
-  attack = player.value.cells[12];
 
+  //if the cell repeats, we look for a new one
   while ((attack.isMissed || attack.isHitted) && !theWinner.value) {
     attack = player.value.cells[Math.floor(Math.random() * 99)];
   }
@@ -60,6 +62,7 @@ const enemyAttack = () => {
     const cells = player.value.cells.filter((cell) => {
       if (cell.isHitted || cell.isMissed) return;
 
+      //to look for the coordinates for the next shot, if we hit it
       if (attacked.y === firstSuccessAttack.value?.y) {
         if (cell.y === attacked.y) {
           if (
@@ -119,7 +122,7 @@ onMounted(() => {
   const ships = new BattleShips();
   const playerBoard = useBoard.get();
   if (playerBoard === null) {
-    return;
+    return router.push("/");
   }
   player.value.cells = playerBoard;
 
@@ -134,6 +137,7 @@ watch(turn, () => {
   }
 });
 
+//checking to see if there were any live ships left
 watch(enemy.value, () => {
   if (!enemy.value.cells.some((ship) => ship.ship && !ship.ship?.dead)) {
     setTimeout(() => {
@@ -154,14 +158,6 @@ onDeactivated(() => useBoard.set([]));
 </script>
 
 <style scoped>
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 30px auto;
-  gap: 30px;
-}
-
 .boards {
   display: flex;
   gap: 30px;

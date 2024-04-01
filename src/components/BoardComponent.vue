@@ -70,7 +70,7 @@ defineEmits<{
   margin: 0 auto;
   height: 100%;
   width: fit-content;
-  border: solid 1px black;
+  border: solid 1px var(--black);
 }
 
 .board {
@@ -85,37 +85,37 @@ defineEmits<{
 
 .symbols > .cell,
 .numbers > .cell {
-  background-color: #aebbdd;
+  background-color: var(--light-grey);
 }
 
 .cell {
-  background: white;
+  background: var(--white);
   width: 25px;
   height: 25px;
-  border: solid 1px black;
+  border: solid 1px var(--black);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .preview {
-  background: #b3b3e7;
-  border: solid #b3b3e7;
+  background: var(--primary);
+  border: solid var(--primary);
 }
 
 .has-ship {
-  background: #b3b3e7;
-  border: solid 2px #4340df;
+  background: var(--primary);
+  border: solid 2px var(--secondary);
 }
 
 .not-free {
-  background: #aaaac5;
-  border: solid 1px #7e7ea1;
+  background: var(--light-grey);
+  border: solid 1px var(--grey);
 }
 
 .attacked-ship {
-  background: #ff8e8e;
-  border: solid 2px red;
+  background: var(--light-red);
+  border: solid 2px var(--red);
 }
 
 .dead::after,
@@ -124,7 +124,7 @@ defineEmits<{
   position: absolute;
   width: 2px;
   height: 25px;
-  background: red;
+  background: var(--red);
 }
 
 .dead::after {
@@ -141,6 +141,6 @@ defineEmits<{
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #001d6e;
+  background-color: var(--secondary);
 }
 </style>

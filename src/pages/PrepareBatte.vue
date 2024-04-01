@@ -62,6 +62,7 @@ const selectShip = (shipId: number) => {
   selectedShip.value = selectedShip.value === shipId ? null : shipId;
 };
 
+//add or remove a ship
 const clickOnCell = (index: number) => {
   if (selectedShip.value !== null) {
     addShip(index);
@@ -70,6 +71,7 @@ const clickOnCell = (index: number) => {
   }
 };
 
+//add the ship to the board
 const addShip = (cellId: number) => {
   const ship = ships.value.ships.find((ship) => ship.id === selectedShip.value);
   if (selectedShip.value !== null && ship) {
@@ -78,12 +80,12 @@ const addShip = (cellId: number) => {
     } catch (error: any) {
       return;
     }
-
     ships.value.removeShip(selectedShip.value);
     selectedShip.value = null;
   }
 };
 
+//remove the ship from the board
 const removeShipFromBoard = (cellId: number) => {
   if (!selectedShip.value) {
     const cell = board.value.cells[cellId];
@@ -112,6 +114,7 @@ const resetBoard = () => {
   ships.value = new BattleShips();
 };
 
+// automatically add ships
 const autoPlace = () => {
   selectedShip.value = null;
   resetBoard();
@@ -124,6 +127,7 @@ const startGame = () => {
   router.push({ name: "battle" });
 };
 
+//turn the ship with the mouse wheel
 window.onwheel = () => {
   isRotate.value = !isRotate.value;
   board.value.deletePreviewShip();
@@ -132,12 +136,6 @@ window.onwheel = () => {
 </script>
 
 <style scoped>
-.container {
-  display: flex;
-  flex-direction: column;
-  margin: 30px auto;
-  gap: 30px;
-}
 .menu {
   display: flex;
   margin: 0 auto;
@@ -153,13 +151,13 @@ window.onwheel = () => {
 
 .ship {
   height: 25px;
-  background: #b3b3e7;
-  border: solid 2px #3d3d7c;
+  background: var(--primary);
+  border: solid 2px var(--secondary);
   border-radius: 5px;
   cursor: pointer;
 }
 .selected {
-  border: solid 3px #001fff;
+  border: solid 3px var(--hover);
 }
 .turn {
   margin: 0 auto;

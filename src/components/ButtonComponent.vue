@@ -12,12 +12,12 @@ button {
   padding: 5px;
   width: 100px;
   min-height: 30px;
-  background: #b3b3e7;
-  border: solid 2px #3d3d7c;
-  cursor: pointer;
+  background: var(--primary);
+  border: solid 2px var(--secondary);
   border-radius: 5px;
+  color: var(--black);
 }
 button:hover {
-  border: solid 2px #001fff;
+  border: solid 2px var(--hover);
 }
 </style>

@@ -35,6 +35,7 @@ export default class Board {
     this.cells.forEach((el) => (el.isPreview = false));
   }
 
+  //add the ship to the board
   addShip(ship: BattleShip, cellId: number, isRotate: boolean) {
     const cell = this.cells[cellId];
 
@@ -71,6 +72,7 @@ export default class Board {
     }
   }
 
+  //remove the ship from the board
   removeShip(ship: BattleShip) {
     const cells: Cell[] = [];
 
@@ -91,6 +93,7 @@ export default class Board {
     );
   }
 
+  // automatically add ships
   autoShipPlace(ships: BattleShip[]) {
     let length = ships.length;
     let i = 0;
@@ -102,7 +105,6 @@ export default class Board {
 
         while (this.cells[randomCell].ship && !this.cells[randomCell].isFree) {
           randomCell = Math.floor(Math.random() * 100);
-          randomRotate = Boolean(Math.floor(Math.round(Math.random())));
         }
         this.addShip(ship, randomCell, randomRotate);
       } catch (e) {
@@ -121,6 +123,7 @@ export default class Board {
     }
   }
 
+  //attack the cell
   attackShip(cellRef: Cell) {
     const cell = this.cells.find(
       (cell) => cell.x === cellRef.x && cell.y === cellRef.y
@@ -153,6 +156,7 @@ export default class Board {
     }
   }
 
+  //determine which cells are blocked near the ship
   getLockedCells(shipCells: Cell[]) {
     const mustLock: Cell[] = [];
     shipCells.forEach((cell) => {
@@ -181,6 +185,7 @@ export default class Board {
     return mustLock;
   }
 
+  //determine the dimensions of the ship
   getFilteredCells(cell: Cell, ship: BattleShip, coordinate: "x" | "y") {
     let shipCoordinate = cell[coordinate];
     const reversedCoordinate = coordinate === "y" ? "x" : "y";
@@ -198,7 +203,6 @@ export default class Board {
       }
     });
     if (cells.length < ship.type) return [];
-
     return cells;
   }
 }

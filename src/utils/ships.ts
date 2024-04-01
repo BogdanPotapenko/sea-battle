@@ -5,7 +5,7 @@ export default class BattleShips {
     this.ships = this.crateBattleShips();
   }
 
-  private crateBattleShips() {
+  crateBattleShips() {
     const ships: BattleShip[] = [];
     const shipsTypes = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
 
@@ -15,7 +15,9 @@ export default class BattleShips {
 
     return ships;
   }
-  public removeShip(id: number) {
+
+  // remove a ship if it is added to the board
+  removeShip(id: number) {
     const idx = this.ships.findIndex((ship) => ship.id === id);
     this.ships.splice(idx, 1);
   }
